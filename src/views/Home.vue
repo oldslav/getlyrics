@@ -13,7 +13,7 @@
       <v-flex xl6 sm12>
         <v-card v-show="lyrics">
           <v-card-text>
-            <h3>{{ lyrics }}</h3>
+            <p style="white-space: pre-line">{{ lyrics }}</p>
           </v-card-text>
         </v-card>
       </v-flex>
