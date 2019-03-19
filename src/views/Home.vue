@@ -1,18 +1,47 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-container grid-list-xl>
+    <v-layout row align-center justify-center>
+      <v-flex xl3 xs12>
+        <v-text-field v-model="payload.band" label="Band" placeholder="Band"></v-text-field>
+      </v-flex>
+      <v-flex xl3 xs12>
+        <v-text-field v-model="payload.title" label="Title" placeholder="Title"></v-text-field>
+      </v-flex>
+      <v-btn color="success" @click="getLyrics">Find lyrics</v-btn>
+    </v-layout>
+    <v-layout row align-center justify-center>
+      <v-flex xl6 sm12>
+        <v-card v-show="lyrics">
+          <v-card-text>
+            <h3>{{ lyrics }}</h3>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import store from "@/store/store";
 
 export default {
   name: "home",
-  components: {
-    HelloWorld
+  components: {},
+  data: () => ({
+    payload: {
+      band: "",
+      title: ""
+    }
+  }),
+  methods: {
+    getLyrics() {
+      store.dispatch("getLyrics", this.payload);
+    }
+  },
+  computed: {
+    lyrics: () => {
+      return store.state.lyrics;
+    }
   }
 };
 </script>
