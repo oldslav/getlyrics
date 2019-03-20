@@ -23,7 +23,7 @@
 
 <script>
 import store from "@/store/store";
-
+import { mapGetters } from "vuex";
 export default {
   name: "home",
   components: {},
@@ -39,9 +39,9 @@ export default {
     }
   },
   computed: {
-    lyrics: () => {
-      return store.state.lyrics;
-    }
+    ...mapGetters({
+      lyrics: "outputLyrics"
+    })
   }
 };
 </script>

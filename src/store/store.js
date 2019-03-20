@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { HTTP } from "../domain/axiosConfig";
+import { stat } from "fs";
 
 Vue.use(Vuex);
 
@@ -18,6 +19,11 @@ export default new Vuex.Store({
       HTTP.get(`${payload.band}/${payload.title}`).then(response => {
         context.commit("setLyrics", response);
       });
+    }
+  },
+  getters: {
+    outputLyrics: state => {
+      return state.lyrics;
     }
   }
 });
