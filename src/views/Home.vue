@@ -11,7 +11,7 @@
     </v-layout>
     <v-layout row wrap align-center justify-center>
       <v-flex xl6 lg6 sm12 text-xs-center>
-        <v-card v-show="lyrics" elevation="12">
+        <v-card v-show="lyrics" elevation="6">
           <v-card-text>
             <h3 style="white-space: pre-line">{{ lyrics }}</h3>
           </v-card-text>

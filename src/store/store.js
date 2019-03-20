@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    lyrics: ""
+    lyrics: "Lyrics will appear here after submitting the form."
   },
   mutations: {
     setLyrics(state, payload) {
