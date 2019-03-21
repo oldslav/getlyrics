@@ -25,7 +25,6 @@
 <script>
 import store from "@/store/store";
 import { mapGetters } from "vuex";
-import { setTimeout } from "timers";
 export default {
   name: "home",
   components: {},
@@ -37,13 +36,10 @@ export default {
     loading: false
   }),
   methods: {
-    getLyrics() {
+    async getLyrics() {
       this.loading = true;
-      store.dispatch("getLyrics", this.payload).then(() => {
-        setTimeout(() => {
-          this.loading = false;
-        }, 600); // just to check loading gif
-      });
+      await store.dispatch("getLyrics", this.payload);
+      this.loading = false;
     }
   },
   computed: {

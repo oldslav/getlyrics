@@ -14,8 +14,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getLyrics(context, payload) {
-      HTTP.get(`${payload.band}/${payload.title}`).then(response => {
+    async getLyrics(context, payload) {
+      await HTTP.get(`${payload.band}/${payload.title}`).then(response => {
         context.commit("setLyrics", response);
       });
     }
