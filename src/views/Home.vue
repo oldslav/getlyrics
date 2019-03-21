@@ -13,7 +13,8 @@
       <v-flex xl6 lg6 sm12 text-xs-center>
         <v-card v-show="lyrics" elevation="6">
           <v-card-text>
-            <h3 style="white-space: pre-line">{{ lyrics }}</h3>
+            <h3 v-if="!loading" style="white-space: pre-line">{{ lyrics }}</h3>
+            <v-progress-circular v-else indeterminate color="success"></v-progress-circular>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -24,6 +25,7 @@
 <script>
 import store from "@/store/store";
 import { mapGetters } from "vuex";
+import { setTimeout } from "timers";
 export default {
   name: "home",
   components: {},
@@ -31,11 +33,17 @@ export default {
     payload: {
       band: "",
       title: ""
-    }
+    },
+    loading: false
   }),
   methods: {
     getLyrics() {
-      store.dispatch("getLyrics", this.payload);
+      this.loading = true;
+      store.dispatch("getLyrics", this.payload).then(() => {
+        setTimeout(() => {
+          this.loading = false;
+        }, 600); // just to check loading gif
+      });
     }
   },
   computed: {
