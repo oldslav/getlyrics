@@ -14,10 +14,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getLyrics(context, payload) {
-      await HTTP.get(`${payload.band}/${payload.title}`).then(response => {
-        context.commit("setLyrics", response);
-      });
+    async getLyrics({ commit }, payload) {
+      const response = await HTTP.get(`${payload.band}/${payload.title}`);
+      commit("setLyrics", response);
     }
   },
   getters: {
